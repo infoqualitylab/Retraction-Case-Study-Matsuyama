@@ -1,6 +1,7 @@
 # Retraction-Case-Study-Matsuyama
 
 Python code for extracting first-generation and second-generation article metadata automatically via Web of Science updated on **April 26, 2019**. 
+
 The code can do the followings:
 * Getting the citing articles for a article by downloading metadata xls file to your local directory (For my Windows laptop, the xls file is stored in "Downloads")
 * cleaning the xls file by excluding the first 26 rows which contain the plots and other information and creating a new cleaned csv file
@@ -15,5 +16,6 @@ Before using the code:
 
 Notes:
 * The website keeps changing. To verify whether the code is working, please run the function open_wos line by line. If one line of the code is not working, you can use Chrome to Web of Science, right click "inspect", locate the element, and right click to copy the element xpath and put the xpath into the code.
+* The WOS article websites might have different website structures, meaning that it is likely that the code that works for one article might not work for others. 
 * BeautifulSoup is a good module for web scraping. However, I didn't find a way for BeautifulSoup to deal with shibboleth authentication request. 
 
