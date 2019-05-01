@@ -13,6 +13,7 @@ import os
 from os import listdir
 import pandas as pd
 
+## remove punctuations and special characters from the title
 def remove_punc(title):
     # remove punctuations in title
     punctuations = '''![]{};:'"\,<>./?@#$%^&*_~'''
@@ -24,24 +25,30 @@ def remove_punc(title):
            no_punct = no_punct + char
     return no_punct
 
+## main function to scrap data from WOS
+# inputs: the article title, netid, and password
+# downloading the xls file to local
 def open_wos(title, netid, pw):
     # remove punctuation
     title = remove_punc(title)
     searchtitle = '"' + title + '"'
     # open Web of Science
     url = "http://apps.webofknowledge.com.proxy2.library.illinois.edu/WOS_GeneralSearch_input.do?product=WOS&search_mode=GeneralSearch&SID=5CzMx7AeqrOibrRiEIE&preferencesSaved="
+    #######
+    # change the directory for chrome webdriver 
+    #######
     chromedriver = 'C:/Users/diye4/Desktop/Python/chromedriver_win32/chromedriver'
     chrome = webdriver.Chrome(chromedriver)
     chrome.get(url)
 
-    # login by using NetID and Password
+    # login page: use NetID and Password as inputs
     username = chrome.find_element_by_id("j_username")
     password = chrome.find_element_by_id("j_password")
     username.send_keys(netid)
     password.send_keys(pw)
     chrome.find_element_by_name("_eventId_proceed").click()
 
-    # search the article
+    # search the article by title
     search = chrome.find_element_by_name("value(input1)")
     search.send_keys(searchtitle)
     chrome.find_element_by_class_name("searchButton").click()
@@ -58,8 +65,9 @@ def open_wos(title, netid, pw):
     reportlink = report.get_attribute("href")
     chrome.get(reportlink)
 
-    # open the window
+    # open the window for download xls option
     chrome.find_element_by_xpath("//select[@id='cr_saveToMenuBottom']/option[text()='Save to Excel File']").click()
+    
     # download the file
     # chrome.find_element_by_xpath('//*[@id="ui-id-7"]/form/div[2]/span/button').click()
     chrome.find_element_by_xpath('//*[@id="numberOfRecordsRange"]').click()
@@ -67,6 +75,10 @@ def open_wos(title, netid, pw):
     chrome.close()
     # rename the file
     time.sleep(7)
+    
+    ######
+    # change the directory 
+    ######
     dir1 = 'C:\\Users\\diye4\\Downloads\\savedrecs.xls'
     dir2 = 'C:\\Users\\diye4\\Downloads\\' + title + '.xls'
     os.rename(dir1, dir2)
@@ -86,6 +98,7 @@ def cleanxls(path_to_dir, titlexls):
     df = df[27:]
     return(df)
 
+# the function might no longer be needed since WOS made a change
 def mergexls(path_to_dir, title):
     xls = findxls(path_to_dir, title)
     df = cleanxls(path_to_dir, xls[0])
@@ -94,6 +107,7 @@ def mergexls(path_to_dir, title):
             df = df.append(cleanxls(path_to_dir, titlexls))
     return(df)
 
+# move xls to a new file
 def movexls(path_to_dir, title):
     xls = findxls(path_to_dir, title)
     title = remove_punc(title)
@@ -115,17 +129,25 @@ def getcitingarticles(path_to_dir, title, netid, pw):
     df.to_csv(path_to_dir + title + ".csv", index = False)
     print("Merged csv is put in the directory.")
 
-
+#######
+# change netid, pw, path_to_dir
+#######
 netid = "netid"
 pw = "password"
 path_to_dir = "C:\\Users\\diye4\\Downloads\\"
+#######
+# change the article title
+#######
 title = "Effects of Omega-3 Polyunsaturated Fatty Acids on Inflammatory Markers in COPD"
 # first-generation articles
 # getcitingarticles(path_to_dir, title, netid, pw)
 
-
 df = pd.read_csv(path_to_dir + title + ".csv")
+# get article titles that have been cited
 titles = df[df["Total Citations"] > 0]["Title"]
+
+## the function is to get the citing articles of a list of articles
+# please make sure the previous functions work before using this one
 def getsgarticles(path_to_dir, titles, netid, pw, start = 0, end = len(titles)):
     for title in titles[start:end]:
         getcitingarticles(path_to_dir, title, netid, pw)
