@@ -10,6 +10,7 @@ Before using the code:
 * You need to download a Chrome Webdriver from http://chromedriver.chromium.org/downloads based on your laptop and the Chrome version.
 * You need to install Python module Selenium 
 * You need to enter your netid and password
+* You need to change the directory where you want to store the data
 * You will need to revise the code for your purpose
 
 Notes:
