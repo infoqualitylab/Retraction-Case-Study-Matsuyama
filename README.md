@@ -1,6 +1,7 @@
 # Retraction-Case-Study-Matsuyama
-
-Python code for extracting first-generation and second-generation article metadata automatically via Web of Science updated on **April 26, 2019**. 
+The directory containing following files:
+* Python code for extracting first-generation and second-generation article metadata automatically via Web of Science updated on **April 26, 2019**
+* R code for network diagrams
 
 The code can do the followings:
 * Getting the citing articles for a article by downloading metadata xls file to your local directory (For my Windows laptop, the xls file is stored in "Downloads")
