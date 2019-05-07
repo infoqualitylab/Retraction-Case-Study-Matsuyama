@@ -1,8 +1,11 @@
 # Retraction-Case-Study-Matsuyama
 The directory containing following files:
 * Python code for extracting first-generation and second-generation article metadata automatically via Web of Science updated on **April 26, 2019**
+* Google Scholar nodes.csv
+* Google Scholar edges.csv
 * R code for network diagrams
 
+** Python code**
 The code can do the followings:
 * Getting the citing articles for a article by downloading metadata xls file to your local directory (For my Windows laptop, the xls file is stored in "Downloads")
 * cleaning the xls file by excluding the first 26 rows which contain the plots and other information and creating a new cleaned csv file
