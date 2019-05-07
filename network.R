@@ -1,6 +1,6 @@
 # install.packages("igraph")
 library(igraph)
-path_to_dir <- "C:/Users/diye4/Downloads/NETWORK/"
+path_to_dir <- ""
 # GS_path <- paste0(path_to_dir, "GS SEARCH/")
 # WOS_path <- paste0(path_to_dir, "WOS SEARCH/Matsuyama/")
 
