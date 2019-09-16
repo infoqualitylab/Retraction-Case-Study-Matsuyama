@@ -7,7 +7,7 @@ The directory contains the following files:
 
 ** Python code**
 The code can do the following:
-* Get the citing articles for a article by downloading metadata xls file to your local directory (For my Windows laptop, the xls file is stored in "Downloads")
+* Get the citing articles for a article by downloading metadata XLS file to your local directory (For my Windows laptop, the xls file is stored in "Downloads")
 * Clean the XLS file by excluding the first 26 rows which contain the plots and other information and creating a new cleaned csv file
 * Rename the CSV file to the article title you search for
 
