@@ -1,18 +1,20 @@
-# setwd("/Users/lydinh/Desktop/ReTracker-citation graph")
-
 # install.packages("igraph")
 library(igraph)
 # install.packages("statnet")
 library(statnet)
 # install.packages("ndtv")
 library(ndtv) 
+# install.packages("ggplot2")
+library(ggplot2)
+# install.packages("tidyverse")
+library(tidyverse)
 
 ## import edgelist
 edges=read.csv("deduplicated edges.csv",header=TRUE)
 names(edges)[1] = "from"
 edges = edges[, c(2, 1)]
 names(edges) = c("from", "to")
-write.csv(edges, "deduplicated edges.csv", row.names = FALSE)
+# write.csv(edges, "deduplicated edges.csv", row.names = FALSE)
 # write.csv(nodes, "deduplicated nodes.csv", row.names = FALSE)
 m=as.matrix(edges)
 
@@ -85,6 +87,7 @@ for (i in 1:nrow(dynamicnodes)) {
 }
 dynamicnodes = dynamicnodes[-unreasonable.idx,]
 
+## updated: 12/04/2019
 ## dynamic network diagram (both)
 dynamic = function(y) {
   n = dynamicnodes[which(dynamicnodes$Year <= y),]
@@ -92,12 +95,18 @@ dynamic = function(y) {
   net = graph_from_data_frame(e, n, directed = T)
   V(net)$color = ifelse((nchar(as.character(V(net)$name)) <= 4), 
                          ifelse(V(net)$name == "A000", "black", "lightblue"), "mediumpurple")
+  num_first_generation = sum(nchar(as.character(V(net)$name)) <= 4) - 1
+  num_second_generation = sum(nchar(as.character(V(net)$name)) > 4)
   p = plot(net, layout = layout_with_lgl, 
                edge.arrow.size = 0.5, 
-               vertex.size = 10,
+               vertex.size = 12,
                vertex.label.dist = 2,
                vertex.label = NA,
-               main = as.character(y))
+               main = as.character(y),
+               sub = paste("Matsuyama Paper (black)\n", "# of first-generation articles (blue):", 
+                           num_first_generation, 
+                           "\n# of second-generation articles (purple):", 
+                           num_second_generation))
   return(p)
 }
 par(mfrow = c(2, 2))
@@ -105,7 +114,7 @@ for(i in 2005:2008) {
   dynamic(i)
 }
 par(mfrow = c(2, 2))
-for(i in 2009:2019) {
+for(i in 2009:2018) {
   dynamic(i)
 }
 
@@ -133,9 +142,31 @@ for(i in 2005:2008) {
   dynamic1(i)
 }
 par(mfrow = c(2, 2))
-for(i in 2009:2019) {
+for(i in 2009:2018) {
   dynamic1(i)
 }
+
+## timeline
+retraction_citations = c(1, 9, 9, 9,
+                         19, 6, 10, 19,
+                         9, 6, 10, 7, 4, 4)
+years = seq(2005, 2018, 1)
+group = c(rep(1, 4), rep(2, 10))
+timeline = data.frame(years, retraction_citations, group)
+# Plot
+ggplot(timeline, aes(x=years, y=retraction_citations, color = group)) +
+  geom_line(size = 1.5, alpha = 0.5, linetype = 1) +
+  geom_point(size = 3) +
+  geom_text(aes(label = retraction_citations),
+            vjust = -0.5, hjust = -0.5, size = 4, show.legend = FALSE) +
+  labs(title="Number of retraction citations to the Matsuyama paper by Year",
+       x ="Year", y = "Retraction Citations", 
+       subtitle = "Pre-retraction 2005 - 2008 (red) & Post-retraction 2009 - 2018 (blue)") +
+  scale_color_gradient(low = "#F8766D", high = "#56B1F7") +
+  theme(legend.position = "none")
+
+## highly-cited FG articles
+highly_cited = edges %>% group_by(from) %>% count(from) %>% filter(n >= 40)
 
 
 
@@ -205,4 +236,3 @@ render.d3movie(
     )
   }
 )
-
