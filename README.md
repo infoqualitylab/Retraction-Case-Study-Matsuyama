@@ -8,23 +8,40 @@ The directory contains the following files:
 * R code for network diagrams
 
 **Python code**
-The code can do the following:
-* Get the citing articles for a article by downloading metadata XLS file to your local directory (For my Windows laptop, the xls file is stored in "Downloads")
-* Clean the XLS file by excluding the first 26 rows which contain the plots and other information and creating a new cleaned csv file
-* Rename the CSV file to the article title you search for
 
 Before using the code:
 * You need to download a Chrome Webdriver from http://chromedriver.chromium.org/downloads based on your laptop and the Chrome version.
-* You need to install Python module Selenium
+* Put the Chrome Webdriver in a local file and put its path later into Python code.
+* You need to install Python module Selenium.
 
 In Anaconda Prompt:
 ```bash
 pip install Selenium
 ```
-
 * You need to enter your netid and password
 * You need to change the directory where you want to store the data
 * You will need to revise the code for your purpose
+
+**Python Files**
+* get_metadata.ipynb: run using Jupyter Notebook
+* get_metadata.py: run using Anaconda Prompt/Terminal
+```bash
+python get_metadata.py
+```
+Follow the instruction by entering NetID, password, 
+```bash
+Enter NetId:
+Enter Password:
+Enter Article Title: 
+Enter Chrome Driver Path (similar to 'C:/Users/diye4/Desktop/Python/chromedriver_win32/chromedriver'): 
+Enter the path for the downloaded file (similar to "C:\\Users\\diye4\\Downloads\\"): 
+```
+
+The code can do the following:
+* Get the citing articles for a article by downloading metadata XLS file to your local directory (For my Windows laptop, the xls file is stored in "Downloads")
+* Clean the XLS file by excluding the first 26 rows which contain the plots and other information and creating a new cleaned csv file
+* Rename the CSV file to the article title you search for
+
 
 Notes:
 * It is possible that a title contains multiple search results. Please be cautious about the XLS file downloaded. If the XLS file is not what you want, please manually download the XLS file.
