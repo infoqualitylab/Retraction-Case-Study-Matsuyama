@@ -2,7 +2,7 @@
 The directory contains the following files:
 * FinalData
 * FinalDataCode: R code for all network diagrams and timeline
-* Python code for extracting first-generation and second-generation article metadata automatically via Web of Science updated on **December 23, 2019**
+* Python Code: extracting first-generation and second-generation article metadata automatically via Web of Science updated on **December 23, 2019**
 * Google Scholar nodes.csv
 * Google Scholar edges.csv
 * R code for network diagrams
