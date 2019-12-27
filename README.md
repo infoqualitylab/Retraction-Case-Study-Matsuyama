@@ -2,7 +2,7 @@
 The directory contains the following files:
 * FinalData
 * FinalDataCode: R code for all network diagrams and timeline
-* Python Code: extracting first-generation and second-generation article metadata automatically via Web of Science updated on **December 23, 2019**
+* Python Code: extracting first-generation and second-generation article metadata automatically via Web of Science updated on **December 26, 2019**
 * Google Scholar nodes.csv
 * Google Scholar edges.csv
 * R code for network diagrams
@@ -24,7 +24,7 @@ pip install Selenium
 
 **Python Files**
 * get_metadata.ipynb: run using Jupyter Notebook
-* get_metadata.py: run using Anaconda Prompt/Terminal
+* get_metadata.py: run using Anaconda Prompt/Terminal - NOTE: This doesn't work with 2FA.
 ```bash
 python get_metadata.py
 ```
@@ -40,7 +40,10 @@ Enter the path for the downloaded file (similar to "C:\\Users\\diye4\\Downloads\
 The code can do the following:
 * Get the citing articles for a article by downloading metadata XLS file to your local directory (For my Windows laptop, the xls file is stored in "Downloads")
 * Clean the XLS file by excluding the first 26 rows which contain the plots and other information and creating a new cleaned csv file
-* Rename the CSV file to the article title you search for
+* Rename the CSV file to the article title you searched for
+
+* get_metadata_on_VPN.py: run using Anaconda Prompt/Terminal - Same functionality as get_metadata.py
+This assumes that you are on-campus or using VPN with Group 4_TunnelAll_2FA_Duo (which requires username/password/and authentication preference push,sms,phone - definitely works with phone).
 
 
 Notes:
