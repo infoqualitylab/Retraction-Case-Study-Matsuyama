@@ -24,6 +24,7 @@ pip install Selenium
 
 **Python Files**
 * get_metadata.ipynb: run using Jupyter Notebook
+* get_metadata_on_VPN.py: run using Anaconda Prompt/Terminal - Same functionality as get_metadata.py, but assumes that you are on-campus or using VPN with Group 4_TunnelAll_2FA_Duo (which requires username/password/and authentication preference push,sms,phone - definitely works with phone).
 * get_metadata.py: run using Anaconda Prompt/Terminal - NOTE: This doesn't work with 2FA.
 ```bash
 python get_metadata.py
@@ -42,8 +43,7 @@ The code can do the following:
 * Clean the XLS file by excluding the first 26 rows which contain the plots and other information and creating a new cleaned csv file
 * Rename the CSV file to the article title you searched for
 
-* get_metadata_on_VPN.py: run using Anaconda Prompt/Terminal - Same functionality as get_metadata.py
-This assumes that you are on-campus or using VPN with Group 4_TunnelAll_2FA_Duo (which requires username/password/and authentication preference push,sms,phone - definitely works with phone).
+
 
 
 Notes:
