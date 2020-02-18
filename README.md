@@ -10,3 +10,4 @@ Network diagram & timeline.R
 * codes for the network diagram for all the GS and WoS first- and second-generation articles.
 * codes for dynamic network diagrams of all the GS and WoS first- and second-generation articles from 2008 to 2019.
 * codes for dynamic network diagrams of specific citations for all the GS and WoS first- and second-generation articles from 2008 to 2019.
+* codes for the timeline of all the first-generation articles citing Matsuyama paper from 2008 to 2019.
