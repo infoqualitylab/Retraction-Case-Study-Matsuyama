@@ -1,7 +1,7 @@
 # Retraction Case Study Matsuyama
-**Date updated: 2020-02-12**
+**Date updated: 2020-02-21**
 The directory contains the following files:
-* FinalData 2020-02-12: contains all the final data up to 2020-02-12, detailed information of the data is in the FinalData 2020-02-12/README.md.
+* FinalData 2020-02-21: contains all the final data up to 2020-02-21, detailed information of the data is in the FinalData 2020-02-21/README.md.
 * Data Preprocessing Codes: contains codes for deduplicating Google Scholar (GS) metadata and Web of Science (Wos) metadata
 * Python Code: extracting first-generation and second-generation article metadata automatically via Web of Science updated on **December 26, 2019**, detailed information and instruction about how to use the Python code are in the Python Code/README.md.
 * R code for network diagram & timeline
